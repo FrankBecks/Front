@@ -1,0 +1,19 @@
+version: '2'
+services:
+    front-app:
+        image: front
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://front-mysql:3306/front?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=front-elasticsearch:9300
+        ports:
+            - 8080:8080
+    front-mysql:
+        extends:
+            file: mysql.yml
+            service: front-mysql
+    front-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: front-elasticsearch
