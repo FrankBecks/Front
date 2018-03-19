@@ -1,0 +1,91 @@
+<div>
+    <h2>
+        <span>Parameters</span>
+        <button class="btn btn-primary float-right jh-create-entity create-parameter" [routerLink]="['/', { outlets: { popup: ['parameter-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down" >
+            Create new Parameter
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="parameters">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Active</span></th>
+            <th><span>Name</span></th>
+            <th><span>Info</span></th>
+            <th><span>Min Value</span></th>
+            <th><span>Max Value</span></th>
+            <th><span>Parameter Type</span></th>
+            <th><span>Parameter Option</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let parameter of parameters ;trackBy: trackId">
+                <td><a [routerLink]="['../parameter', parameter.id ]">{{parameter.id}}</a></td>
+                <td>{{parameter.active}}</td>
+                <td>{{parameter.name}}</td>
+                <td>{{parameter.info}}</td>
+                <td>{{parameter.minValue}}</td>
+                <td>{{parameter.maxValue}}</td>
+                <td>
+                    <div *ngIf="parameter.parameterType">
+                        <a [routerLink]="['../parameter-type', parameter.parameterType?.id ]" >{{parameter.parameterType?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <span *ngFor="let parameterOption of parameter.parameterOptions; let last = last">
+                            <a class="form-control-static" [routerLink]="['../parameter-option', parameterOption?.id ]">{{parameterOption.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../parameter', parameter.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'parameter/'+ parameter.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'parameter/'+ parameter.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

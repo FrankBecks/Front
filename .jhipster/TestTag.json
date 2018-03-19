@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "salesOrderTest",
+            "otherEntityName": "salesOrderTest",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "testTag"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180319145100",
+    "entityTableName": "test_tag",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity SalesOrder.
+    -->
+    <changeSet id="20180319145052-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="customer_id"
+                                 baseTableName="sales_order"
+                                 constraintName="fk_sales_order_customer_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="salesman_id"
+                                 baseTableName="sales_order"
+                                 constraintName="fk_sales_order_salesman_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="report_type_id"
+                                 baseTableName="sales_order"
+                                 constraintName="fk_sales_order_report_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="report_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="sales_order_type_id"
+                                 baseTableName="sales_order"
+                                 constraintName="fk_sales_order_sales_order_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="order_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="segment_id"
+                                 baseTableName="sales_order"
+                                 constraintName="fk_sales_order_segment_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="segment"/>
+
+        <addForeignKeyConstraint baseColumnNames="payment_method_id"
+                                 baseTableName="sales_order"
+                                 constraintName="fk_sales_order_payment_method_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="payment_method"/>
+
+        <addForeignKeyConstraint baseColumnNames="order_priority_id"
+                                 baseTableName="sales_order"
+                                 constraintName="fk_sales_order_order_priority_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="order_priority"/>
+
+        <addForeignKeyConstraint baseColumnNames="order_status_id"
+                                 baseTableName="sales_order"
+                                 constraintName="fk_sales_order_order_status_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="order_status"/>
+
+        <addForeignKeyConstraint baseColumnNames="sales_orders_id"
+                                 baseTableName="sales_order_sales_order_test"
+                                 constraintName="fk_sales_order_sales_order_test_sales_orders_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sales_order"/>
+        <addForeignKeyConstraint baseColumnNames="sales_order_tests_id"
+                                 baseTableName="sales_order_sales_order_test"
+                                 constraintName="fk_sales_order_sales_order_test_sales_order_tests_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sales_order_test"/>
+        
+        <addForeignKeyConstraint baseColumnNames="sales_orders_id"
+                                 baseTableName="sales_order_sample"
+                                 constraintName="fk_sales_order_sample_sales_orders_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sales_order"/>
+        <addForeignKeyConstraint baseColumnNames="samples_id"
+                                 baseTableName="sales_order_sample"
+                                 constraintName="fk_sales_order_sample_samples_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sample"/>
+        
+    </changeSet>
+</databaseChangeLog>

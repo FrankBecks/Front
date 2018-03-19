@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "salesOrder",
+            "otherEntityName": "salesOrder",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "orderPriority"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180319145055",
+    "entityTableName": "order_priority",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

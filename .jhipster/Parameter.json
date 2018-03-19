@@ -1,0 +1,56 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "parameterType",
+            "otherEntityName": "parameterType",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "parameter(name)"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "parameter",
+            "relationshipName": "parameterOption",
+            "otherEntityName": "parameterOption",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "salesOrderTest",
+            "otherEntityName": "salesOrderTest",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "parameter"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "info",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "minValue",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "maxValue",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20180319145103",
+    "entityTableName": "parameter",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

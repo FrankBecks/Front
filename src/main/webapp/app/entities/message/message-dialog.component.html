@@ -1,0 +1,58 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myMessageLabel">Create or edit a Message</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!message.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="message.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_body">Body</label>
+            <input type="text" class="form-control" name="body" id="field_body"
+                [(ngModel)]="message.body" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_date">Date</label>
+            <div class="d-flex">
+                <input id="field_date" type="datetime-local" class="form-control" name="date" [(ngModel)]="message.date"
+                />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_salesOrder">Sales Order</label>
+            <select class="form-control" id="field_salesOrder" name="salesOrder" [(ngModel)]="message.salesOrder">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="salesOrderOption.id === message.salesOrder?.id ? message.salesOrder : salesOrderOption" *ngFor="let salesOrderOption of salesorders; trackBy: trackSalesOrderById">{{salesOrderOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_messageType">Message Type</label>
+            <select class="form-control" id="field_messageType" name="messageType" [(ngModel)]="message.messageType">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="messageTypeOption.id === message.messageType?.id ? message.messageType : messageTypeOption" *ngFor="let messageTypeOption of messagetypes; trackBy: trackMessageTypeById">{{messageTypeOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" [(ngModel)]="message.user" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === message.user?.id ? message.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

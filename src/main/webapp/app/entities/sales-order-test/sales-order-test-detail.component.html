@@ -1,0 +1,66 @@
+
+<div *ngIf="salesOrderTest">
+    <h2><span>Sales Order Test</span> {{salesOrderTest.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Active</span></dt>
+        <dd>
+            <span>{{salesOrderTest.active}}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{salesOrderTest.name}}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+            <span>{{salesOrderTest.code}}</span>
+        </dd>
+        <dt><span>Info</span></dt>
+        <dd>
+            <span>{{salesOrderTest.info}}</span>
+        </dd>
+        <dt><span>Date Modified</span></dt>
+        <dd>
+            <span>{{salesOrderTest.dateModified | date:'medium'}}</span>
+        </dd>
+        <dt><span>Category</span></dt>
+        <dd>
+            <div *ngIf="salesOrderTest.category">
+                <a [routerLink]="['/category', salesOrderTest.category?.id]">{{salesOrderTest.category?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Test Type</span></dt>
+        <dd>
+            <div *ngIf="salesOrderTest.testType">
+                <a [routerLink]="['/test-type', salesOrderTest.testType?.id]">{{salesOrderTest.testType?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Test Tag</span></dt>
+        <dd>
+            <span *ngFor="let testTag of salesOrderTest.testTags; let last = last">
+                <a [routerLink]="['/test-tag', testTag?.id ]">{{testTag.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span>Parameter</span></dt>
+        <dd>
+            <span *ngFor="let parameter of salesOrderTest.parameters; let last = last">
+                <a [routerLink]="['/parameter', parameter?.id ]">{{parameter.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'sales-order-test/'+ salesOrderTest.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

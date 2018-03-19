@@ -1,0 +1,103 @@
+<div>
+    <h2>
+        <span>Sales Order Tests</span>
+        <button class="btn btn-primary float-right jh-create-entity create-sales-order-test" [routerLink]="['/', { outlets: { popup: ['sales-order-test-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down" >
+            Create new Sales Order Test
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="salesOrderTests">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Active</span></th>
+            <th><span>Name</span></th>
+            <th><span>Code</span></th>
+            <th><span>Info</span></th>
+            <th><span>Date Modified</span></th>
+            <th><span>Category</span></th>
+            <th><span>Test Type</span></th>
+            <th><span>Test Tag</span></th>
+            <th><span>Parameter</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let salesOrderTest of salesOrderTests ;trackBy: trackId">
+                <td><a [routerLink]="['../sales-order-test', salesOrderTest.id ]">{{salesOrderTest.id}}</a></td>
+                <td>{{salesOrderTest.active}}</td>
+                <td>{{salesOrderTest.name}}</td>
+                <td>{{salesOrderTest.code}}</td>
+                <td>{{salesOrderTest.info}}</td>
+                <td>{{salesOrderTest.dateModified | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="salesOrderTest.category">
+                        <a [routerLink]="['../category', salesOrderTest.category?.id ]" >{{salesOrderTest.category?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="salesOrderTest.testType">
+                        <a [routerLink]="['../test-type', salesOrderTest.testType?.id ]" >{{salesOrderTest.testType?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <span *ngFor="let testTag of salesOrderTest.testTags; let last = last">
+                            <a class="form-control-static" [routerLink]="['../test-tag', testTag?.id ]">{{testTag.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td>
+                    <span *ngFor="let parameter of salesOrderTest.parameters; let last = last">
+                            <a class="form-control-static" [routerLink]="['../parameter', parameter?.id ]">{{parameter.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../sales-order-test', salesOrderTest.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sales-order-test/'+ salesOrderTest.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sales-order-test/'+ salesOrderTest.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

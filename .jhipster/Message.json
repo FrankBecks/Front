@@ -1,0 +1,45 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "salesOrder",
+            "otherEntityName": "salesOrder",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "message"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "messageType",
+            "otherEntityName": "messageType",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "message"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "message"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "body",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "Instant"
+        }
+    ],
+    "changelogDate": "20180319145108",
+    "entityTableName": "message",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

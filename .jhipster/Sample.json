@@ -1,0 +1,40 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "salesOrder",
+            "otherEntityName": "salesOrder",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "sample"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "batch",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateSampling",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "samplingLocation",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "info",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180319145059",
+    "entityTableName": "sample",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

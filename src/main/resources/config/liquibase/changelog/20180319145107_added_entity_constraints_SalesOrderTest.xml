@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity SalesOrderTest.
+    -->
+    <changeSet id="20180319145107-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="category_id"
+                                 baseTableName="sales_order_test"
+                                 constraintName="fk_sales_order_test_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="category"/>
+
+        <addForeignKeyConstraint baseColumnNames="test_type_id"
+                                 baseTableName="sales_order_test"
+                                 constraintName="fk_sales_order_test_test_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="test_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="sales_order_tests_id"
+                                 baseTableName="sales_order_test_test_tag"
+                                 constraintName="fk_sales_order_test_test_tag_sales_order_tests_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sales_order_test"/>
+        <addForeignKeyConstraint baseColumnNames="test_tags_id"
+                                 baseTableName="sales_order_test_test_tag"
+                                 constraintName="fk_sales_order_test_test_tag_test_tags_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="test_tag"/>
+        
+        <addForeignKeyConstraint baseColumnNames="sales_order_tests_id"
+                                 baseTableName="sales_order_test_parameter"
+                                 constraintName="fk_sales_order_test_parameter_sales_order_tests_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sales_order_test"/>
+        <addForeignKeyConstraint baseColumnNames="parameters_id"
+                                 baseTableName="sales_order_test_parameter"
+                                 constraintName="fk_sales_order_test_parameter_parameters_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="parameter"/>
+        
+    </changeSet>
+</databaseChangeLog>

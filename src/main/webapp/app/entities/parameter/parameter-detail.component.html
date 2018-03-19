@@ -1,0 +1,54 @@
+
+<div *ngIf="parameter">
+    <h2><span>Parameter</span> {{parameter.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Active</span></dt>
+        <dd>
+            <span>{{parameter.active}}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{parameter.name}}</span>
+        </dd>
+        <dt><span>Info</span></dt>
+        <dd>
+            <span>{{parameter.info}}</span>
+        </dd>
+        <dt><span>Min Value</span></dt>
+        <dd>
+            <span>{{parameter.minValue}}</span>
+        </dd>
+        <dt><span>Max Value</span></dt>
+        <dd>
+            <span>{{parameter.maxValue}}</span>
+        </dd>
+        <dt><span>Parameter Type</span></dt>
+        <dd>
+            <div *ngIf="parameter.parameterType">
+                <a [routerLink]="['/parameter-type', parameter.parameterType?.id]">{{parameter.parameterType?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Parameter Option</span></dt>
+        <dd>
+            <span *ngFor="let parameterOption of parameter.parameterOptions; let last = last">
+                <a [routerLink]="['/parameter-option', parameterOption?.id ]">{{parameterOption.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'parameter/'+ parameter.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,110 @@
+
+<div *ngIf="salesOrder">
+    <h2><span>Sales Order</span> {{salesOrder.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Date Expected Delivery</span></dt>
+        <dd>
+            <span>{{salesOrder.dateExpectedDelivery | date:'medium'}}</span>
+        </dd>
+        <dt><span>Date Confirmed</span></dt>
+        <dd>
+            <span>{{salesOrder.dateConfirmed | date:'medium'}}</span>
+        </dd>
+        <dt><span>Date Samples Expected</span></dt>
+        <dd>
+            <span>{{salesOrder.dateSamplesExpected | date:'medium'}}</span>
+        </dd>
+        <dt><span>Date Xml Exported</span></dt>
+        <dd>
+            <span>{{salesOrder.dateXmlExported | date:'medium'}}</span>
+        </dd>
+        <dt><span>Date Modified</span></dt>
+        <dd>
+            <span>{{salesOrder.dateModified | date:'medium'}}</span>
+        </dd>
+        <dt><span>Ref</span></dt>
+        <dd>
+            <span>{{salesOrder.ref}}</span>
+        </dd>
+        <dt><span>Comment</span></dt>
+        <dd>
+            <span>{{salesOrder.comment}}</span>
+        </dd>
+        <dt><span>Report File</span></dt>
+        <dd>
+            <span>{{salesOrder.reportFile}}</span>
+        </dd>
+        <dt><span>Customer</span></dt>
+        <dd>
+            {{salesOrder.customer?.id}}
+        </dd>
+        <dt><span>Salesman</span></dt>
+        <dd>
+            {{salesOrder.salesman?.id}}
+        </dd>
+        <dt><span>Report Type</span></dt>
+        <dd>
+            <div *ngIf="salesOrder.reportType">
+                <a [routerLink]="['/report-type', salesOrder.reportType?.id]">{{salesOrder.reportType?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Sales Order Type</span></dt>
+        <dd>
+            <div *ngIf="salesOrder.salesOrderType">
+                <a [routerLink]="['/order-type', salesOrder.salesOrderType?.id]">{{salesOrder.salesOrderType?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Segment</span></dt>
+        <dd>
+            <div *ngIf="salesOrder.segment">
+                <a [routerLink]="['/segment', salesOrder.segment?.id]">{{salesOrder.segment?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Payment Method</span></dt>
+        <dd>
+            <div *ngIf="salesOrder.paymentMethod">
+                <a [routerLink]="['/payment-method', salesOrder.paymentMethod?.id]">{{salesOrder.paymentMethod?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Order Priority</span></dt>
+        <dd>
+            <div *ngIf="salesOrder.orderPriority">
+                <a [routerLink]="['/order-priority', salesOrder.orderPriority?.id]">{{salesOrder.orderPriority?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Order Status</span></dt>
+        <dd>
+            <div *ngIf="salesOrder.orderStatus">
+                <a [routerLink]="['/order-status', salesOrder.orderStatus?.id]">{{salesOrder.orderStatus?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Sales Order Test</span></dt>
+        <dd>
+            <span *ngFor="let salesOrderTest of salesOrder.salesOrderTests; let last = last">
+                <a [routerLink]="['/sales-order-test', salesOrderTest?.id ]">{{salesOrderTest.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span>Sample</span></dt>
+        <dd>
+            <span *ngFor="let sample of salesOrder.samples; let last = last">
+                <a [routerLink]="['/sample', sample?.id ]">{{sample.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'sales-order/'+ salesOrder.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

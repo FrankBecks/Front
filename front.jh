@@ -1,0 +1,131 @@
+entity SalesOrder {
+ dateExpectedDelivery Instant,
+ dateConfirmed Instant,
+ dateSamplesExpected Instant,
+ dateXmlExported Instant,
+ dateModified Instant,
+ ref String,
+ comment String,
+ reportFile String,
+ comment String
+}
+
+entity PaymentMethod {
+   active Boolean,
+   name String
+}
+
+entity OrderType {
+   active Boolean,
+   name String
+}
+
+entity OrderPriority {
+ active Boolean,
+ name String
+}
+
+entity OrderStatus {
+ active Boolean,
+ name String
+}
+
+entity ReportType {
+ active Boolean,
+ name String
+}
+
+entity TestType {
+ active Boolean,
+ name String
+}
+
+entity Sample {
+ name String,
+ batch String,
+ dateSampling Instant,
+ samplingLocation String,
+ info String
+}
+
+entity TestTag{
+ active Boolean,
+ name String
+}
+
+entity Segment {
+ active Boolean,
+ name String
+}
+
+entity Category {
+ active Boolean,
+ name String
+}
+
+entity Parameter {
+ active Boolean,
+ name String,
+ info String,
+ minValue Double,
+ maxValue Double
+}
+
+entity ParameterOption {
+ active Boolean,
+ name String,
+ info String
+}
+
+entity ParameterType {
+ active Boolean,
+ name String
+}
+
+entity MessageType {
+ active Boolean,
+ name String
+}
+
+entity SalesOrderTest {
+ active Boolean,
+ name String,
+ code String,
+ info String,
+ dateModified Instant
+}
+
+entity Message {
+ body String,
+ date Instant
+}
+
+relationship OneToOne {
+   Parameter{ParameterType} to ParameterType{Parameter(name)}
+
+   Message{SalesOrder}  to SalesOrder{Message}
+   Message{MessageType} to MessageType{Message}
+   Message{User}        to User{Message}
+
+   SalesOrderTest{Category} to Category{SalesOrderTest(name)}
+   SalesOrderTest{TestType} to TestType{SalesOrder(name)}
+
+   SalesOrder{Customer}       to User{SalesOrderCustomer(name)}
+   SalesOrder{Salesman}       to User{SalesOrderSalesman(name)}
+   SalesOrder{ReportType}     to ReportType{SalesOrder(name)}
+   SalesOrder{SalesOrderType} to OrderType{SalesOrder(name)}
+   SalesOrder{Segment}        to Segment{SalesOrder(name)}
+   SalesOrder{PaymentMethod}  to PaymentMethod{SalesOrder(name)}
+   SalesOrder{OrderPriority}  to OrderPriority{SalesOrder(name)}
+   SalesOrder{OrderStatus}    to OrderStatus{SalesOrder(name)}
+}
+
+relationship ManyToMany {
+   SalesOrderTest{TestTag}    to TestTag{SalesOrderTest(name)}
+   SalesOrderTest{Parameter}  to Parameter{SalesOrderTest(name)}
+
+   SalesOrder{SalesOrderTest} to SalesOrderTest{SalesOrder(name)}
+   SalesOrder{Sample}         to Sample{SalesOrder(name)}
+
+   Parameter{ParameterOption} to ParameterOption{Parameter}
+}
