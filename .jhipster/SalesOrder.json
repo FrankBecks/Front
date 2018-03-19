@@ -1,0 +1,132 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "customer",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "salesOrderCustomer(name)"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "salesman",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "salesOrderSalesman(name)"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "reportType",
+            "otherEntityName": "reportType",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "salesOrder(name)"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "salesOrderType",
+            "otherEntityName": "orderType",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "salesOrder(name)"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "segment",
+            "otherEntityName": "segment",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "salesOrder(name)"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "paymentMethod",
+            "otherEntityName": "paymentMethod",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "salesOrder(name)"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "orderPriority",
+            "otherEntityName": "orderPriority",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "salesOrder(name)"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "orderStatus",
+            "otherEntityName": "orderStatus",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "salesOrder(name)"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "salesOrder",
+            "relationshipName": "salesOrderTest",
+            "otherEntityName": "salesOrderTest",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "salesOrder",
+            "relationshipName": "sample",
+            "otherEntityName": "sample",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "message",
+            "otherEntityName": "message",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "salesOrder"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "dateExpectedDelivery",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "dateConfirmed",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "dateSamplesExpected",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "dateXmlExported",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "dateModified",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "ref",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "comment",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "reportFile",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180319145052",
+    "entityTableName": "sales_order",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="autoIncrement" value="true"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity SalesOrder.
+    -->
+    <changeSet id="20180319145052-1" author="jhipster">
+        <createTable tableName="sales_order">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="date_expected_delivery" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="date_confirmed" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="date_samples_expected" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="date_xml_exported" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="date_modified" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="jhi_ref" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="jhi_comment" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="report_file" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="customer_id" type="bigint">
+                <constraints unique="true" nullable="true" />
+            </column>            <column name="salesman_id" type="bigint">
+                <constraints unique="true" nullable="true" />
+            </column>            <column name="report_type_id" type="bigint">
+                <constraints unique="true" nullable="true" />
+            </column>            <column name="sales_order_type_id" type="bigint">
+                <constraints unique="true" nullable="true" />
+            </column>            <column name="segment_id" type="bigint">
+                <constraints unique="true" nullable="true" />
+            </column>            <column name="payment_method_id" type="bigint">
+                <constraints unique="true" nullable="true" />
+            </column>            <column name="order_priority_id" type="bigint">
+                <constraints unique="true" nullable="true" />
+            </column>            <column name="order_status_id" type="bigint">
+                <constraints unique="true" nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="sales_order" columnName="date_expected_delivery" columnDataType="datetime"/>
+        <dropDefaultValue tableName="sales_order" columnName="date_confirmed" columnDataType="datetime"/>
+        <dropDefaultValue tableName="sales_order" columnName="date_samples_expected" columnDataType="datetime"/>
+        <dropDefaultValue tableName="sales_order" columnName="date_xml_exported" columnDataType="datetime"/>
+        <dropDefaultValue tableName="sales_order" columnName="date_modified" columnDataType="datetime"/>
+        
+        <createTable tableName="sales_order_sales_order_test">
+            <column name="sales_order_tests_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sales_orders_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="sales_orders_id, sales_order_tests_id" tableName="sales_order_sales_order_test"/>
+        
+        <createTable tableName="sales_order_sample">
+            <column name="samples_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sales_orders_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="sales_orders_id, samples_id" tableName="sales_order_sample"/>
+        
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>

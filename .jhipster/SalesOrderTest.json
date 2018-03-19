@@ -1,0 +1,72 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "category",
+            "otherEntityName": "category",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "salesOrderTest(name)"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "testType",
+            "otherEntityName": "testType",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "salesOrder(name)"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "salesOrderTest",
+            "relationshipName": "testTag",
+            "otherEntityName": "testTag",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "salesOrderTest",
+            "relationshipName": "parameter",
+            "otherEntityName": "parameter",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "salesOrder",
+            "otherEntityName": "salesOrder",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "salesOrderTest"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "code",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "info",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateModified",
+            "fieldType": "Instant"
+        }
+    ],
+    "changelogDate": "20180319145107",
+    "entityTableName": "sales_order_test",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

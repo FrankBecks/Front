@@ -1,0 +1,46 @@
+
+<div *ngIf="message">
+    <h2><span>Message</span> {{message.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Body</span></dt>
+        <dd>
+            <span>{{message.body}}</span>
+        </dd>
+        <dt><span>Date</span></dt>
+        <dd>
+            <span>{{message.date | date:'medium'}}</span>
+        </dd>
+        <dt><span>Sales Order</span></dt>
+        <dd>
+            <div *ngIf="message.salesOrder">
+                <a [routerLink]="['/sales-order', message.salesOrder?.id]">{{message.salesOrder?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Message Type</span></dt>
+        <dd>
+            <div *ngIf="message.messageType">
+                <a [routerLink]="['/message-type', message.messageType?.id]">{{message.messageType?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+            {{message.user?.id}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'message/'+ message.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

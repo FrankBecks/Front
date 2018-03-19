@@ -1,0 +1,143 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="mySalesOrderLabel">Create or edit a Sales Order</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!salesOrder.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="salesOrder.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_dateExpectedDelivery">Date Expected Delivery</label>
+            <div class="d-flex">
+                <input id="field_dateExpectedDelivery" type="datetime-local" class="form-control" name="dateExpectedDelivery" [(ngModel)]="salesOrder.dateExpectedDelivery"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_dateConfirmed">Date Confirmed</label>
+            <div class="d-flex">
+                <input id="field_dateConfirmed" type="datetime-local" class="form-control" name="dateConfirmed" [(ngModel)]="salesOrder.dateConfirmed"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_dateSamplesExpected">Date Samples Expected</label>
+            <div class="d-flex">
+                <input id="field_dateSamplesExpected" type="datetime-local" class="form-control" name="dateSamplesExpected" [(ngModel)]="salesOrder.dateSamplesExpected"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_dateXmlExported">Date Xml Exported</label>
+            <div class="d-flex">
+                <input id="field_dateXmlExported" type="datetime-local" class="form-control" name="dateXmlExported" [(ngModel)]="salesOrder.dateXmlExported"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_dateModified">Date Modified</label>
+            <div class="d-flex">
+                <input id="field_dateModified" type="datetime-local" class="form-control" name="dateModified" [(ngModel)]="salesOrder.dateModified"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_ref">Ref</label>
+            <input type="text" class="form-control" name="ref" id="field_ref"
+                [(ngModel)]="salesOrder.ref" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_comment">Comment</label>
+            <input type="text" class="form-control" name="comment" id="field_comment"
+                [(ngModel)]="salesOrder.comment" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_reportFile">Report File</label>
+            <input type="text" class="form-control" name="reportFile" id="field_reportFile"
+                [(ngModel)]="salesOrder.reportFile" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_customer">Customer</label>
+            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="salesOrder.customer" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === salesOrder.customer?.id ? salesOrder.customer : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_salesman">Salesman</label>
+            <select class="form-control" id="field_salesman" name="salesman" [(ngModel)]="salesOrder.salesman" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === salesOrder.salesman?.id ? salesOrder.salesman : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_reportType">Report Type</label>
+            <select class="form-control" id="field_reportType" name="reportType" [(ngModel)]="salesOrder.reportType">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="reportTypeOption.id === salesOrder.reportType?.id ? salesOrder.reportType : reportTypeOption" *ngFor="let reportTypeOption of reporttypes; trackBy: trackReportTypeById">{{reportTypeOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_salesOrderType">Sales Order Type</label>
+            <select class="form-control" id="field_salesOrderType" name="salesOrderType" [(ngModel)]="salesOrder.salesOrderType">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="orderTypeOption.id === salesOrder.salesOrderType?.id ? salesOrder.salesOrderType : orderTypeOption" *ngFor="let orderTypeOption of salesordertypes; trackBy: trackOrderTypeById">{{orderTypeOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_segment">Segment</label>
+            <select class="form-control" id="field_segment" name="segment" [(ngModel)]="salesOrder.segment">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="segmentOption.id === salesOrder.segment?.id ? salesOrder.segment : segmentOption" *ngFor="let segmentOption of segments; trackBy: trackSegmentById">{{segmentOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_paymentMethod">Payment Method</label>
+            <select class="form-control" id="field_paymentMethod" name="paymentMethod" [(ngModel)]="salesOrder.paymentMethod">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="paymentMethodOption.id === salesOrder.paymentMethod?.id ? salesOrder.paymentMethod : paymentMethodOption" *ngFor="let paymentMethodOption of paymentmethods; trackBy: trackPaymentMethodById">{{paymentMethodOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_orderPriority">Order Priority</label>
+            <select class="form-control" id="field_orderPriority" name="orderPriority" [(ngModel)]="salesOrder.orderPriority">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="orderPriorityOption.id === salesOrder.orderPriority?.id ? salesOrder.orderPriority : orderPriorityOption" *ngFor="let orderPriorityOption of orderpriorities; trackBy: trackOrderPriorityById">{{orderPriorityOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_orderStatus">Order Status</label>
+            <select class="form-control" id="field_orderStatus" name="orderStatus" [(ngModel)]="salesOrder.orderStatus">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="orderStatusOption.id === salesOrder.orderStatus?.id ? salesOrder.orderStatus : orderStatusOption" *ngFor="let orderStatusOption of orderstatuses; trackBy: trackOrderStatusById">{{orderStatusOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_salesOrderTest">Sales Order Test</label>
+            <select class="form-control" id="field_salesOrderTest" multiple name="salesOrderTest" [(ngModel)]="salesOrder.salesOrderTests">
+                <option [ngValue]="getSelected(salesOrder.salesOrderTests, salesOrderTestOption)" *ngFor="let salesOrderTestOption of salesordertests; trackBy: trackSalesOrderTestById">{{salesOrderTestOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_sample">Sample</label>
+            <select class="form-control" id="field_sample" multiple name="sample" [(ngModel)]="salesOrder.samples">
+                <option [ngValue]="getSelected(salesOrder.samples, sampleOption)" *ngFor="let sampleOption of samples; trackBy: trackSampleById">{{sampleOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

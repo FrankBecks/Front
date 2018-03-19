@@ -42,6 +42,33 @@ public class CacheConfiguration {
             cm.createCache(io.github.jhipster.application.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.jhipster.application.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.jhipster.application.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.SalesOrder.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.SalesOrder.class.getName() + ".salesOrderTests", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.SalesOrder.class.getName() + ".samples", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.PaymentMethod.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.OrderType.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.OrderPriority.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.OrderStatus.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ReportType.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.TestType.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Sample.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Sample.class.getName() + ".salesOrders", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.TestTag.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.TestTag.class.getName() + ".salesOrderTests", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Segment.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Category.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Parameter.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Parameter.class.getName() + ".parameterOptions", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Parameter.class.getName() + ".salesOrderTests", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ParameterOption.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ParameterOption.class.getName() + ".parameters", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ParameterType.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.MessageType.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.SalesOrderTest.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.SalesOrderTest.class.getName() + ".testTags", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.SalesOrderTest.class.getName() + ".parameters", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.SalesOrderTest.class.getName() + ".salesOrders", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Message.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
